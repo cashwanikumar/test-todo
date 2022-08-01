@@ -5,6 +5,7 @@ export default function Header(props) {
     return (
         <header>
             <h1>Things To Do</h1>
+            <h3>Subtitle</h3>
             <InputWrapper {...props}/>
         </header>
     );
