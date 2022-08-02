@@ -24,7 +24,14 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          env: baseUrl=${{ github.event.deployment.payload.web_url }}
+          record: true
+          parallel: true
+          group: "UI - Electron"
+        #   spec: cypress/tests/ui/*
+          config-file: cypress.config.js
+
+        env:
+          baseUrl: ${{ github.event.deployment.payload.web_url }}
           CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
