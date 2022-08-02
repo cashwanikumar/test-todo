@@ -25,6 +25,11 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           env: baseUrl=${{ github.event.deployment.payload.web_url }}
+          CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
+          # Recommended: pass the GitHub token lets this action correctly
+          # determine the unique run id necessary to re-run the checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         #   build: npm run build
         #   start: npm start
 
@@ -69,6 +74,11 @@ jobs:
 
         env:
           baseUrl: ${{ github.event.deployment.payload.web_url }}
+          CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
+          # Recommended: pass the GitHub token lets this action correctly
+          # determine the unique run id necessary to re-run the checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #   ui-firefox-tests:
 #     timeout-minutes: 15
