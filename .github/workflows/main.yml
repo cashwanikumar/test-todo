@@ -29,9 +29,9 @@ jobs:
           group: "UI - Electron"
         #   spec: cypress/tests/ui/*
           config-file: cypress.config.js
-          env: baseUrl=${{ github.event.deployment.payload.web_url }}
 
         env:
+          CYPRESS_baseUrl: ${{ github.event.deployment.payload.web_url }}
           CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
@@ -78,9 +78,9 @@ jobs:
           group: "UI - Chrome"
         #   spec: cypress/tests/ui/*
           config-file: cypress.config.js
-          env: baseUrl=${{ github.event.deployment.payload.web_url }}
 
         env:
+          CYPRESS_baseUrl: ${{ github.event.deployment.payload.web_url }}
           CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
@@ -116,9 +116,9 @@ jobs:
           group: "UI - Firefox"
           # spec: cypress/tests/ui/*
           config-file: cypress.config.js
-          env: baseUrl=${{ github.event.deployment.payload.web_url }}
 
         env:
+          CYPRESS_baseUrl: ${{ github.event.deployment.payload.web_url }}
           CYPRESS_PROJECT_ID: ${{ secrets.LOCAL_CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.LOCAL_CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
