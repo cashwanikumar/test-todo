@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: health checkup
 
 on:
   deployment_status
