@@ -40,6 +40,8 @@ jobs:
         # run copies of the current job in parallel
         containers: [1]
     steps:
+      - name: "Dump GitHub context"
+        run: echo ${{ toJson(github.event.deployment_status) }}
       - name: "UI Tests - Firefox"
         uses: cypress-io/github-action@v4
         with:
