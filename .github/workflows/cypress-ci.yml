@@ -1,4 +1,4 @@
-name: Cypress Tests chrome firefox linux
+name: e2e Tests
 
 on:
   deployment_status:
@@ -6,7 +6,7 @@ on:
 #     types: [submitted]
 
 jobs:
-  install:
+  install-setup:
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node16.13.0-chrome95-ff94
@@ -24,10 +24,10 @@ jobs:
       - run: node --version
       - run: node -p 'os.cpus()'
 
-  ui-chrome-tests:
+  chrome:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    needs: install
+    needs: install-setup
     if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -65,10 +65,10 @@ jobs:
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  ui-firefox-tests:
+  firefox:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    needs: install
+    needs: install-setup
     if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false
     # if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
     strategy:
@@ -101,10 +101,10 @@ jobs:
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  ui-edge-tests:
+  edge:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    needs: install
+    needs: install-setup
     if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false
     strategy:
       # when one test fails, DO NOT cancel the other
