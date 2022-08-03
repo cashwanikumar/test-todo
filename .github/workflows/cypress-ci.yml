@@ -1,7 +1,7 @@
 name: Cypress Tests chrome firefox linux
 
 on:
-#   deployment_status:
+  deployment_status:
   pull_request_review:
     types: [submitted]
 
