@@ -1,7 +1,7 @@
 name: Cypress Tests window edge
 
 on:
-  deployment_status:
+#   deployment_status:
   pull_request_review:
     types: [submitted]
 
