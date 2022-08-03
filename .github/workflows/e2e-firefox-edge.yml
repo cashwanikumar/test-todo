@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: install-setup
-    if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
+    if: ${{ github.event.deployment_status.state == 'success' }} && ${{ contains(toJson(github.event.commits), '[skip ci]') }} == false && ${{ github.event.review.state == 'approved' }}
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -60,7 +60,8 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: install-setup
-    if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
+    if: ${{ github.event.deployment_status.state == 'success' }} && ${{ contains(toJson(github.event.commits), '[skip ci]') }} == false && ${{ github.event.review.state == 'approved' }}
+    # if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
