@@ -17,7 +17,7 @@ export default function Header(props) {
                 <MenuItem>Close Window</MenuItem>
             </Menu>
             <h1>Things To Do</h1>
-            <h3>Subtitle note</h3>
+            <h3>Subtitle notes</h3>
             <InputWrapper {...props}/>
         </header>
     );
