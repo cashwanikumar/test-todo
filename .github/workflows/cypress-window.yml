@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 40
     runs-on: windows-2019
     needs: install-windows
-    if: github.event.deployment_status.state == 'success'
+    if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
