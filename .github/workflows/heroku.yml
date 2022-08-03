@@ -1,0 +1,34 @@
+name: Cypress Tests
+
+on:
+  deployment_status
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    # Run health check only if deployment succeeds.
+    if: github.event.deployment_status.state == 'success'
+
+    # Check that the deployed app returns successful HTTP response.
+    steps:
+    - id: health_check
+      uses: jtalk/url-health-check-action@v1.3
+      with:
+        url: ${{ github.event.deployment.payload.web_url }}
+        follow-redirect: true
+        max-attempts: 4
+        retry-delay: 30s
+        continue-on-error: true
+    # Set appropriate status to the deployed commit.
+    # - uses: octokit/request-action@v2.0.23
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     with:
+    #       route: POST /repos/:repository/statuses/${{ github.event.deployment.sha }}
+    #       repository: ${{ github.repository }}
+    #       state: ${{ steps.health_check.outcome }}
+    #       target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    #       description: >
+    #                 ${{ format('Site health is {0}', steps.health_check.outcome) }}
+    #       context: health-check
