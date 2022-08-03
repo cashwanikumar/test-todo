@@ -28,8 +28,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: install-setup
-    if: contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
-    # if: github.event.deployment_status.result == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
+    if: github.event.deployment_status.state == 'success' && contains(toJson(github.event.commits), '[skip ci]') == false && github.event.review.state == 'approved'
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -40,8 +39,6 @@ jobs:
         # run copies of the current job in parallel
         containers: [1]
     steps:
-      - name: "Dump GitHub context"
-        run: echo ${{ toJson(github.event.deployment_status) }}
       - name: "UI Tests - Firefox"
         uses: cypress-io/github-action@v4
         with:
