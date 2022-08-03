@@ -125,7 +125,7 @@ jobs:
       - name: Node info
         run: node -v
 
-      - name: "UI Tests - Chrome"
+      - name: "UI Tests - edge"
         uses: cypress-io/github-action@v4
         with:
           browser: edge
