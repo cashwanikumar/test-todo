@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress Tests chrome firefox linux
 
 on:
   deployment_status
