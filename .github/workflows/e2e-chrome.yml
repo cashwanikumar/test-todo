@@ -6,6 +6,7 @@ on:
 jobs:
   install-setup:
     runs-on: ubuntu-latest
+    if: contains(toJson(github.event.commits), '[skip ci]') == false
     container:
       image: cypress/browsers:node16.13.0-chrome95-ff94
       options: --user 1001
