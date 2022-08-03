@@ -73,10 +73,10 @@ jobs:
 #         #   start: npm start
 
   ui-chrome-tests:
-    if: github.event.deployment_status.state == 'success'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: install
+    if: github.event.deployment_status.state == 'success'
     # container:
     #   image: cypress/browsers:node16.13.0-chrome95-ff94
     #   options: --user 1001
@@ -99,8 +99,8 @@ jobs:
       - name: Node info
         run: node -v
 
-      - name: __e Dir
-        run: ls /__e
+    #   - name: __e Dir
+    #     run: ls /__e
 
       - name: "UI Tests - Chrome"
         uses: cypress-io/github-action@v4
@@ -121,13 +121,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   ui-firefox-tests:
-    if: github.event.deployment_status.state == 'success'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: install
     # container:
     #   image: cypress/browsers:node16.13.0-chrome95-ff94
     #   options: --user 1001
+    if: github.event.deployment_status.state == 'success'
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -160,10 +160,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   ui-edge-tests:
-    if: github.event.deployment_status.state == 'success'
     timeout-minutes: 40
     runs-on: windows-2019
     needs: install-windows
+    if: github.event.deployment_status.state == 'success'
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -183,8 +183,8 @@ jobs:
       - name: Node info
         run: node -v
 
-      - name: __e Dir
-        run: ls /__e
+    #   - name: __e Dir
+    #     run: ls /__e
 
       - name: "UI Tests - edge"
         uses: cypress-io/github-action@v4
