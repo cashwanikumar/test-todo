@@ -13,7 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+      - name: skip-workflow
+        id: skip-workflow # id used for referencing step
+        uses: saulmaldonado/skip-workflow@v1
+        with:
+          phrase: /^\[skip-e2e\]/i # matches with commits starting with '[skip-workflow]'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Cypress install
         uses: cypress-io/github-action@v4
         with:
@@ -37,6 +42,12 @@ jobs:
       matrix:
         containers: [1]
     steps:
+      - name: skip-workflow
+        id: skip-workflow # id used for referencing step
+        uses: saulmaldonado/skip-workflow@v1
+        with:
+          phrase: /^\[skip-e2e\]/i # matches with commits starting with '[skip-workflow]'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.10.0
         with:
