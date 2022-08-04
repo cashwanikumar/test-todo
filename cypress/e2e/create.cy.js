@@ -15,6 +15,10 @@ describe('Todo Page', () => {
         cy.findAllByText('Things To Do').should('have.length', 1)
     });
 
+    it('Ashwani visible', () => {
+        cy.findAllByText(Cypress.env('firstName')).should('have.length', 1)
+    });
+
     it('check menu', () => {
         cy.findByRole('button', {name: 'Open menu'}).click()
         cy.findByText('Save').click()
