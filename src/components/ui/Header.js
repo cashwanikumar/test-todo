@@ -14,7 +14,7 @@ export default function Header(props) {
             <Menu menuButton={<MenuButton>Open menu</MenuButton>} transition>
                 <MenuItem>New File</MenuItem>
                 <MenuItem>Save</MenuItem>
-                <MenuItem>Close Window</MenuItem>
+                <MenuItem>Close Window -</MenuItem>
             </Menu>
             <h1>Things To Do</h1>
             <h1>Ashwani</h1>
