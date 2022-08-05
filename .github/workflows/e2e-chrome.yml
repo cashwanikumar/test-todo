@@ -54,14 +54,14 @@ jobs:
       matrix:
         containers: [1]
     steps:
-      - name: skip-workflow
-        id: skip-workflow # id used for referencing step
-        uses: saulmaldonado/skip-workflow@v1
-        with:
-          phrase: '[skip e2e]'
-          search: '["commit_messages", "pull_request"]' # search commits and pr title
-          pr-message: 'title'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: skip-workflow
+    #     id: skip-workflow # id used for referencing step
+    #     uses: saulmaldonado/skip-workflow@v1
+    #     with:
+    #       phrase: '[skip e2e]'
+    #       search: '["commit_messages", "pull_request"]' # search commits and pr title
+    #       pr-message: 'title'
+    #       github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.10.0
